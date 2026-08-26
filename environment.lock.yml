@@ -1,0 +1,56 @@
+# LOCKED environment — exact versions for reproducibility.
+# Generated: 2026-06-17 from the bulkgpt conda env (H100, CUDA 12.1).
+#
+# Usage:
+#   conda env create -f environment.lock.yml
+#   conda activate bulkgpt
+#   pip install -e .
+#
+# For CPU-only: comment pytorch-cuda line and use cpuonly instead.
+
+name: bulkgpt
+channels:
+  - conda-forge
+  - bioconda
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  # Core runtime (pinned)
+  - python=3.10.20
+  - pip=26.0.1
+  - numpy=1.26.4
+  - scipy=1.15.3
+  - pandas=2.3.3
+  - pyyaml=6.0.3
+  - scikit-learn=1.7.2
+  - anndata=0.11.4
+  - h5py=3.16.0
+  - psutil=7.2.2
+  - tqdm=4.67.3
+
+  # PyTorch with CUDA 12.1 (for CPU-only: comment pytorch-cuda, use cpuonly)
+  - pytorch=2.5.1
+  - torchvision=0.20.1
+  - torchaudio=2.5.1
+  - pytorch-cuda=12.1
+
+  # Single-cell bioinformatics
+  - scanpy=1.11.5
+  - leidenalg=0.11.0
+  - python-igraph=1.0.0
+
+  # Development / testing
+  - pytest=9.0.3
+  - pytest-cov=7.0.0
+  - ruff=0.12.10
+
+  # Method-specific: pinned pip packages
+  - pip:
+    - scgpt==0.2.4
+    # Key transitive deps for reproducibility
+    - einops==0.8.2
+    - transformers==4.47.1
+    - datasets==2.21.0
+    - pytorch-lightning==1.9.5
+    - session-info==1.0.0

@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Multi-Foundation Model Benchmark for Bulk RNA-seq Deconvolution"
+authors:
+  - family-names: "Ye"
+    given-names: "Rui"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: "2026-08-25"
+license: "CC-BY-4.0"
+keywords:
+  - deconvolution
+  - single-cell
+  - bulk RNA-seq
+  - benchmark
+  - foundation model
+repository-code: "https://github.com/RainyEricYe/bulkgpt-deconvolution-benchmark"
+url: "https://huggingface.co/datasets/bulkgpt-data"
+abstract: >-
+  A standardized, reproducible benchmark for bulk RNA-seq deconvolution,
+  evaluating 73 methods across 42 datasets (30 pseudo-bulk + 12 real-bulk),
+  covering classical regression, container-based deconvolution, single-cell
+  foundation-model frozen embeddings, fine-tuned foundation models, and ML
+  regressor baselines.

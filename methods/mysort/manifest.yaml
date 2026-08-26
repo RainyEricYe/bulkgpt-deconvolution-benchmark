@@ -1,0 +1,12 @@
+name: MySort
+mode: container
+container_image: containers/sif/mysort.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/mysort/run.py
+test_configs:
+  default: tests/configs/mysort/default.yaml
+description: >
+  MySort — MySort deconvolution.
+  Container-based method running inside mysort.sif Apptainer image.

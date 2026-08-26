@@ -1,0 +1,9 @@
+{
+    "pearson_mean": 1.0,
+    "scorr_mean": 1.0,
+    "ccorr_mean": 1.0,
+    "mae_overall": 0.0,
+    "rmse_overall": 0.0,
+    "maecorr": 0.0,
+    "wt_mean": 1.0
+}

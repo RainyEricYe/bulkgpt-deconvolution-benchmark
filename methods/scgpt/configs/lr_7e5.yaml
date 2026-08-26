@@ -1,0 +1,25 @@
+# scGPT — hyperparam: higher head LR
+dataset:
+  celltype_col: cell_type
+  batch_col:
+model:
+  binned: true
+  deconv_hidden_dim: 128
+  deconv_n_layers: 2
+  use_fast_transformer: true
+  cell_emb_style: cls
+training:
+  seed: 42
+  epochs: 30
+  batch_size: 16
+  lr: 0.0007
+  backbone_lr: 0.00007
+  unfreeze_backbone: true
+  loss_type: mse_kl
+  num_workers: 2
+  train_ratio: 0.8
+  n_pseudo_bulk: 5000
+  max_seq_len: 202
+paths:
+  pretrained_model: weights/scgpt/whole-human
+  checkpoint_dir: tests/output/scgpt/lr_7e5

@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# MixupVI — Python VAE + Mixup, reference-free deconvolution
+# Source: https://github.com/owkin/PyDeconv (ICML 2025)
+# =============================================================================
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends git && apt-get clean
+    pip3 install --no-cache-dir --upgrade pip
+    pip3 install --no-cache-dir --default-timeout=600 "torch>=2.0.0" --index-url https://download.pytorch.org/whl/cpu
+    pip3 install --no-cache-dir --default-timeout=300 \
+        "numpy<2" "pandas>=2.0" "anndata>=0.11.2" "scikit-learn>=1.6.1"
+    rm -rf /tmp/PyDeconv && cd /tmp && \
+    git clone --depth 1 https://github.com/owkin/PyDeconv.git && \
+    cd PyDeconv && pip3 install --no-cache-dir --no-deps . && \
+    rm -rf /tmp/PyDeconv
+
+%files
+    ../../fixed_scripts/mixupvi/run.py /code/run.py
+
+%runscript
+    python3 /code/run.py
+
+%labels
+    Author DeconBenchmark
+    Method MixupVI
+    Version 1.0.0

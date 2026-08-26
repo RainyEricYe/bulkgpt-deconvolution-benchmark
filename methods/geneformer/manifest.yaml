@@ -1,0 +1,16 @@
+name: Geneformer
+mode: conda
+conda_env: geneformer
+timeout: 7200
+entry:
+  train: methods/geneformer/train.py
+  predict: methods/geneformer/predict.py
+test_configs:
+  default: methods/geneformer/configs/default.yaml
+  finetune: methods/geneformer/configs/finetune.yaml
+  longer: methods/geneformer/configs/longer.yaml
+  wider: methods/geneformer/configs/wider.yaml
+description: >
+  Geneformer embedding-based deconvolution.
+  Uses pretrained Geneformer to extract gene embeddings,
+  then trains a lightweight MLP deconvolution head.

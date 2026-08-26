@@ -1,0 +1,12 @@
+name: RNA-Sieve
+mode: container
+container_image: containers/sif/rna-sieve.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/rna-sieve/run.py
+test_configs:
+  default: tests/configs/rna-sieve/default.yaml
+description: >
+  RNA-Sieve — RNA sieve deconvolution.
+  Container-based method running inside rna-sieve.sif Apptainer image.

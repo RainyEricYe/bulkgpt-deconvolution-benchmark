@@ -1,0 +1,12 @@
+name: DeMixSC
+mode: container
+container_image: benchmark/pydeconv/sif/demixsc.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/demixsc/run.py
+test_configs:
+  default: tests/configs/demixsc/default.yaml
+description: >
+  DeMixSC — Weighted NNLS with benchmark alignment (R).
+  Platform-effect correction between scRNA-seq and bulk data.

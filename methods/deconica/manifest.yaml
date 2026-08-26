@@ -1,0 +1,12 @@
+name: DeconICA
+mode: container
+container_image: containers/sif/deconica.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deconica/run.py
+test_configs:
+  default: tests/configs/deconica/default.yaml
+description: >
+  DeconICA — Independent component analysis deconvolution.
+  Container-based method running inside deconica.sif Apptainer image.

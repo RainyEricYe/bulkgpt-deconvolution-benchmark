@@ -1,0 +1,12 @@
+data:
+  celltype_col: cell_type
+  max_cells: 2000
+training:
+  seed: 42
+container:
+  timeout: 3600
+paths:
+  sc_ref: tests/data/sdy67.h5
+  bulk: tests/data/sdy67.h5
+  sif_path: containers/sif/music.sif
+  output: tests/output/music/default/proportions.csv

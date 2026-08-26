@@ -1,0 +1,24 @@
+name: CountBridges
+mode: container
+container_image: containers/sif/countbridges.sif
+host_env: bulkgpt
+timeout: 1800
+entry:
+  run: methods/countbridges/run.py
+test_configs:
+  default: tests/configs/countbridges/default.yaml
+description: >
+  Count Bridges — stochastic bridge process deconvolution (ICLR 2026).
+
+  Uses an Expectation-Maximization algorithm on Poisson bridge processes
+  to deconvolve bulk RNA-seq into cell-type proportions. Builds a signature
+  matrix from scRNA-seq reference, then iteratively estimates the contribution
+  of each cell type to each gene's expression via a discrete stochastic bridge.
+
+  Paper: Nic Fishman, Gokul Gowri, Tanush Kumar, Jiaqi Lu, Valentin De Bortoli,
+         Jonathan Gootenberg, Omar Abudayyeh. "Count Bridges enable Modeling and
+         Deconvolving Transcriptomic Data." ICLR 2026. arXiv: 2603.04730.
+
+  Note: Official code not publicly available at time of integration.
+  This implementation is a minimal working version based on the paper's
+  EM framework for deconvolution with stochastic bridges on integers.

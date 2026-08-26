@@ -1,0 +1,12 @@
+name: DemixT
+mode: container
+container_image: containers/sif/demixt.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/demixt/run.py
+test_configs:
+  default: tests/configs/demixt/default.yaml
+description: >
+  DemixT — Demixing deconvolution.
+  Container-based method running inside demixt.sif Apptainer image.

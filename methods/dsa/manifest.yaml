@@ -1,0 +1,12 @@
+name: DSA
+mode: container
+container_image: containers/sif/dsa.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/dsa/run.py
+test_configs:
+  default: tests/configs/dsa/default.yaml
+description: >
+  DSA — Digital sorting algorithm deconvolution.
+  Container-based method running inside dsa.sif Apptainer image.

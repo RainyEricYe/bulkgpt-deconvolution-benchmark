@@ -1,0 +1,12 @@
+name: MCPCounter
+mode: container
+container_image: containers/sif/mcpcounter.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/mcpcounter/run.py
+test_configs:
+  default: tests/configs/mcpcounter/default.yaml
+description: >
+  MCPCounter — Microenvironment cell population counter.
+  Container-based method running inside mcpcounter.sif Apptainer image.

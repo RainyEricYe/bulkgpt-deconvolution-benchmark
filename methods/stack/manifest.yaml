@@ -1,0 +1,14 @@
+name: STACK
+mode: conda
+conda_env: stack
+timeout: 7200
+entry:
+  train: methods/stack/train.py
+  predict: methods/stack/predict.py
+test_configs:
+  default: methods/stack/configs/default.yaml
+  longer: methods/stack/configs/longer.yaml
+  wider: methods/stack/configs/wider.yaml
+description: >
+  STACK (Self-supervised Transformer for Aligning Cell embeddings and Knowledge)
+  embedding-based deconvolution. Trains a DeconvHead on frozen STACK embeddings.

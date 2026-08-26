@@ -1,0 +1,16 @@
+name: DeBcam
+mode: container
+container_image: containers/sif/debcam.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/debcam/run.py
+test_configs:
+  default: tests/configs/debcam/default.yaml
+description: >
+  DeBcam — Deconfounded Bayesian deconvolution.
+  Container-based method running inside debcam.sif Apptainer image.
+
+# ── Deprecated ──
+status: deprecated
+deprecation_reason: "数据限制：1_pseudo_bulk 数据集细胞类型数 > 基因数，凸包算法无法收敛"

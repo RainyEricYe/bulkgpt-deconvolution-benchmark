@@ -1,0 +1,305 @@
+default_gpu: false
+default_timeout: 600
+methods:
+  adroit:
+    compat: '*'
+    gpu: false
+    sif: adroit.sif
+    timeout: 600
+  aric:
+    compat: '*'
+    gpu: false
+    sif: aric.sif
+    timeout: 600
+  autogenes:
+    compat: '*'
+    gpu: false
+    sif: autogenes.sif
+    timeout: 600
+  baycount:
+    compat: '*'
+    gpu: false
+    sif: baycount.sif
+    timeout: 1800
+  bayescce:
+    compat: '*'
+    gpu: false
+    sif: bayescce.sif
+    timeout: 1800
+  bayesprism:
+    compat: '*'
+    gpu: false
+    sif: bayesprism.sif
+    timeout: 1800
+  bayice:
+    compat: '*'
+    gpu: false
+    sif: bayice.sif
+    timeout: 1800
+  bisquemarker:
+    compat: '*'
+    gpu: false
+    sif: bisquemarker.sif
+    timeout: 600
+  bisqueref:
+    compat: '*'
+    gpu: false
+    sif: bisqueref.sif
+    timeout: 600
+  bulkgpt:
+    compat: '*'
+    gpu: true
+    sif: bulkgpt.sif
+    timeout: 7200
+  cibersortx:
+    compat: '*'
+    gpu: false
+    needs_login: true
+    sif: cibersortx.sif
+    timeout: 3600
+  condecon:
+    compat: '*'
+    gpu: false
+    sif: condecon.sif
+    timeout: 600
+  cpm:
+    compat: '*'
+    gpu: false
+    sif: cpm.sif
+    timeout: 600
+  daism:
+    compat: '*'
+    gpu: false
+    sif: daism.sif
+    timeout: 600
+  debcam:
+    compat: '*'
+    gpu: false
+    sif: debcam.sif
+    timeout: 600
+  deblender:
+    compat: '*'
+    gpu: false
+    sif: deblender.sif
+    timeout: 600
+  decode:
+    compat: '*'
+    gpu: true
+    sif: decode.sif
+    timeout: 3600
+  decompress:
+    compat: '*'
+    gpu: false
+    sif: decompress.sif
+    timeout: 600
+  deconf:
+    compat: '*'
+    gpu: false
+    sif: deconf.sif
+    timeout: 600
+  deconformer:
+    compat:
+    - Liver
+    - Pancreas
+    - Anterior_Cingulate_Cortex
+    gpu: true
+    sif: deconformer.sif
+    timeout: 600
+  deconica:
+    compat: '*'
+    gpu: false
+    sif: deconica.sif
+    timeout: 600
+  deconpeaker:
+    compat: '*'
+    gpu: false
+    sif: deconpeaker.sif
+    timeout: 600
+  deconrnaseq:
+    compat: '*'
+    gpu: false
+    sif: deconrnaseq.sif
+    timeout: 600
+  deconvseq:
+    compat: '*'
+    gpu: false
+    sif: deconvseq.sif
+    timeout: 600
+  decot:
+    compat: '*'
+    gpu: false
+    sif: decot.sif
+    timeout: 600
+  demixsc:
+    compat: '*'
+    gpu: false
+    sif: demixsc.sif
+    timeout: 600
+  demixt:
+    compat: '*'
+    gpu: false
+    sif: demixt.sif
+    timeout: 600
+  deseq2:
+    compat: '*'
+    gpu: false
+    sif: deseq2.sif
+    timeout: 600
+  diffformer:
+    compat:
+    - Liver
+    - Pancreas
+    gpu: true
+    sif: diffformer.sif
+    timeout: 600
+  digitaldlsorter:
+    compat: '*'
+    gpu: true
+    sif: digitaldlsorter.sif
+    timeout: 1800
+  dsa:
+    compat: '*'
+    gpu: false
+    sif: dsa.sif
+    timeout: 600
+  dtangle:
+    compat: '*'
+    gpu: false
+    sif: dtangle.sif
+    timeout: 600
+  dwls:
+    compat: '*'
+    gpu: false
+    sif: dwls.sif
+    timeout: 600
+  emeth:
+    compat: '*'
+    gpu: false
+    sif: emeth.sif
+    timeout: 600
+  epic:
+    compat: '*'
+    gpu: false
+    sif: epic.sif
+    timeout: 600
+  fardeep:
+    compat: '*'
+    gpu: false
+    sif: fardeep.sif
+    timeout: 600
+  hspe:
+    compat: '*'
+    gpu: false
+    sif: hspe.sif
+    timeout: 600
+  immucellai:
+    compat: '*'
+    gpu: false
+    sif: immucellai.sif
+    timeout: 600
+  lindeconseq:
+    compat: '*'
+    gpu: false
+    sif: lindeconseq.sif
+    timeout: 600
+  linseed:
+    compat: '*'
+    gpu: false
+    sif: linseed.sif
+    timeout: 600
+  mcpcounter:
+    compat: '*'
+    gpu: false
+    sif: mcpcounter.sif
+    timeout: 600
+  methylresolver:
+    compat: '*'
+    gpu: false
+    sif: methylresolver.sif
+    timeout: 600
+  mixture:
+    compat: '*'
+    gpu: false
+    sif: mixture.sif
+    timeout: 600
+  mixupvi:
+    compat: '*'
+    gpu: false
+    sif: mixupvi.sif
+    timeout: 600
+  momf:
+    compat: '*'
+    gpu: false
+    sif: momf.sif
+    timeout: 600
+  music:
+    compat: '*'
+    gpu: false
+    sif: music.sif
+    timeout: 600
+  mysort:
+    compat: '*'
+    gpu: false
+    sif: mysort.sif
+    timeout: 600
+  nitumid:
+    compat: '*'
+    gpu: false
+    sif: nitumid.sif
+    timeout: 600
+  prede:
+    compat: '*'
+    gpu: false
+    sif: prede.sif
+    timeout: 600
+  quantiseq:
+    compat: '*'
+    gpu: false
+    sif: quantiseq.sif
+    timeout: 600
+  refactor:
+    compat: '*'
+    gpu: false
+    sif: refactor.sif
+    timeout: 600
+  rna-sieve:
+    compat: '*'
+    gpu: false
+    sif: rna-sieve.sif
+    timeout: 600
+  scaden:
+    compat: '*'
+    gpu: true
+    sif: scaden.sif
+    timeout: 1800
+  scdc:
+    compat: '*'
+    gpu: false
+    sif: scdc.sif
+    timeout: 600
+  spatialdwls:
+    compat: '*'
+    gpu: false
+    sif: spatialdwls.sif
+    timeout: 600
+  squid:
+    compat: '*'
+    gpu: false
+    sif: squid.sif
+    timeout: 600
+  sweetwater:
+    compat: '*'
+    gpu: true
+    sif: sweetwater.sif
+    timeout: 1800
+  tape:
+    compat: '*'
+    gpu: true
+    sif: tape.sif
+    timeout: 3600
+  toast:
+    compat: '*'
+    gpu: false
+    sif: toast.sif
+    timeout: 600
+sif_dir: sif/

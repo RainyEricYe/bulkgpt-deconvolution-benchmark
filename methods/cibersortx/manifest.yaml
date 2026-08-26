@@ -1,0 +1,12 @@
+name: CIBERSORTx
+mode: conda
+conda_env: bulkgpt
+timeout: 3600
+entry:
+  run: methods/cibersortx/run.py
+test_configs:
+  default: tests/configs/cibersortx/default.yaml
+description: >
+  CIBERSORTx — NuSVR-based deconvolution (Newman et al. 2015).
+  Builds signature matrix from scRNA-seq reference and solves
+  proportions via nu-support vector regression.

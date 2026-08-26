@@ -1,0 +1,79 @@
+sweeps:
+  lr_ablation:
+    description: "LR sweep \u2014 scGPT FT on Liver"
+    method: scgpt
+    dataset: Liver
+    grid:
+      lr:
+      - 3.0e-05
+      - 5.0e-05
+      - 7.0e-05
+      - 0.0001
+      - 0.0003
+    fixed:
+      epochs: 30
+      batch_size: 64
+      n_hvg: 581
+      unfreeze_backbone: true
+      encoding: binned
+      loss_type: mse_kl
+      cell_emb_style: mean
+  n_hvg_ablation:
+    description: nHVG sweep
+    method: scgpt
+    dataset: Liver
+    grid:
+      n_hvg:
+      - 200
+      - 400
+      - 581
+      - 800
+      - 1200
+    fixed:
+      epochs: 30
+      lr: 7.0e-05
+      batch_size: 64
+      unfreeze_backbone: true
+      encoding: binned
+  loss_ablation:
+    description: Loss function comparison
+    method: scgpt
+    dataset: Liver
+    grid:
+      loss_type:
+      - mse_kl
+      - mse
+      - mse_cos
+      - kl
+    fixed:
+      epochs: 30
+      lr: 7.0e-05
+      n_hvg: 581
+  pooling_ablation:
+    description: Cell embedding pooling
+    method: scgpt
+    dataset: Liver
+    grid:
+      cell_emb_style:
+      - mean
+      - cls
+      - attn
+    fixed:
+      epochs: 30
+      lr: 7.0e-05
+      n_hvg: 581
+  seed_sweep:
+    description: Random seed reproducibility
+    method: scgpt
+    dataset: Liver
+    grid:
+      seed:
+      - 42
+      - 123
+      - 456
+      - 789
+      - 2024
+    fixed:
+      epochs: 30
+      lr: 7.0e-05
+      n_hvg: 581

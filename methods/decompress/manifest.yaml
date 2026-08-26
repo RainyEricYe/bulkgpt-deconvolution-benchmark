@@ -1,0 +1,12 @@
+name: DeCompress
+mode: container
+container_image: containers/sif/decompress.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/decompress/run.py
+test_configs:
+  default: tests/configs/decompress/default.yaml
+description: >
+  DeCompress — Decomposition-based compression deconvolution.
+  Container-based method running inside decompress.sif Apptainer image.

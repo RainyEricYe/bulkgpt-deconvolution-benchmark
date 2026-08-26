@@ -1,0 +1,8 @@
+name: bulkformer_fstat
+mode: conda
+conda_env: bulkformer
+entry:
+  run: run.py
+timeout: 7200
+requires_gpu: true
+description: "BulkFormer + F-statistic gene weighting + global_proj + RidgeCV"

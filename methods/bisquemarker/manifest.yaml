@@ -1,0 +1,12 @@
+name: BisqueMarker
+mode: container
+container_image: containers/sif/bisquemarker.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/bisquemarker/run.py
+test_configs:
+  default: tests/configs/bisquemarker/default.yaml
+description: >
+  BisqueMarker — Bisque marker-based deconvolution.
+  Container-based method running inside bisquemarker.sif Apptainer image.

@@ -1,0 +1,12 @@
+name: MoMf
+mode: container
+container_image: containers/sif/momf.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/momf/run.py
+test_configs:
+  default: tests/configs/momf/default.yaml
+description: >
+  MoMf — MOFA-based deconvolution.
+  Container-based method running inside momf.sif Apptainer image.

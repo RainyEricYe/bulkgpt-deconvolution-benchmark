@@ -1,0 +1,12 @@
+name: LinDeconSeq
+mode: container
+container_image: containers/sif/lindeconseq.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/lindeconseq/run.py
+test_configs:
+  default: tests/configs/lindeconseq/default.yaml
+description: >
+  LinDeconSeq — Linear deconvolution with sequential filtering.
+  Container-based method running inside lindeconseq.sif Apptainer image.

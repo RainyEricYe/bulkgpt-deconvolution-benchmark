@@ -1,0 +1,173 @@
+scenarios:
+  full_benchmark:
+    description: All methods x all 30 pseudo-bulk datasets
+    methods:
+    - '*'
+    datasets:
+    - '*'
+    resume: true
+    timeout: 7200
+  foundation_models:
+    description: All 5 FMs (FT+FZ) on CELLxGENE datasets
+    methods:
+    - scgpt-ft
+    - scgpt-fz
+    - geneformer-ft
+    - geneformer-fz
+    - scfoundation-fz
+    - transcriptformer
+    - stack
+    datasets:
+    - cellxgene/*
+  ablation_scgpt:
+    description: scGPT 9 variants on 3 tissues
+    methods:
+    - scgpt-ft
+    - scgpt-fz
+    - scgpt-ft-nohvg
+    - scgpt-fz-nohvg
+    - scgpt-continuous
+    - scgpt-nokl
+    - scgpt-cosloss
+    - scgpt-attnpool
+    - scgpt-clspool
+    datasets:
+    - Liver
+    - Lung
+    - Pancreas
+    resume: true
+  real_bulk:
+    description: All methods on 4 real-world bulk datasets
+    methods:
+    - '*'
+    datasets:
+    - sweetwater_pbmc_gs
+    - huuki_myers_dlpfc
+    - demixsc_retina
+    - sdy67
+  sif_smoke:
+    description: Quick smoke test
+    methods:
+    - adroit
+    datasets:
+    - Liver
+    timeout: 300
+  downstream_brca:
+    description: TCGA-BRCA downstream analysis
+    methods:
+    - scgpt-ft
+    - geneformer-ft
+    - decode
+    - cibersortx
+    - music
+    - transcriptformer
+    - stack
+    datasets:
+    - tcga_brca
+dataset_groups:
+  cellxgene:
+  - Anterior_Cingulate_Cortex
+  - Basal_Zone_Of_Heart
+  - Fimbria_Of_Uterine_Tube
+  - Heart_Left_Ventricle
+  - Liver
+  - Middle_Temporal_Gyrus
+  - Primary_Auditory_Cortex
+  - Primary_Somatosensory_Cortex
+  - Primary_Visual_Cortex
+  - Small_Intestine
+  tabula_sapiens:
+  - Bladder
+  - Blood
+  - Bone_Marrow
+  - Eye
+  - Fat
+  - Large_Intestine
+  - Liver
+  - Lung
+  - Lymph_Node
+  - Muscle
+  - Pancreas
+  - Prostate
+  - Salivary_Gland
+  - Skin
+  - Small_Intestine
+  - Spleen
+  - Thymus
+  - Tongue
+  - Trachea
+  - Vasculature
+method_groups:
+  deconbenchmark_sif:
+  - adroit
+  - aric
+  - autogenes
+  - baycount
+  - bayescce
+  - bayesprism
+  - bayice
+  - bisquemarker
+  - bisqueref
+  - bseqsc
+  - celldistinguisher
+  - cpm
+  - daism
+  - debcam
+  - deblender
+  - decompress
+  - deconf
+  - deconica
+  - deconpeaker
+  - deconrnaseq
+  - deconvseq
+  - decot
+  - demixt
+  - deseq2
+  - digitaldlsorter
+  - dsa
+  - dtangle
+  - dwls
+  - emeth
+  - epic
+  - fardeep
+  - hspe
+  - immucellai
+  - lindeconseq
+  - linseed
+  - mcpcounter
+  - methylresolver
+  - mixture
+  - mixupvi
+  - momf
+  - music
+  - mysort
+  - nitumid
+  - prede
+  - quantiseq
+  - refactor
+  - rna_sieve
+  - scaden
+  - scdc
+  - spatialdwls
+  - toast
+  - cibersortx
+  - deconformer
+  - diffformer
+  custom:
+  - scgpt-ft
+  - scgpt-fz
+  - geneformer-ft
+  - geneformer-fz
+  - scfoundation-fz
+  - transcriptformer
+  - stack
+  - decode
+  - tape
+  - squid
+  - demixsc
+  - condecon
+  - sweetwater
+  - ols
+  - nnls
+  - rlr
+  - nusvr

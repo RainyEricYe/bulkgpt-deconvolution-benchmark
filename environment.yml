@@ -1,0 +1,46 @@
+# Default environment — flexible version ranges for first-time setup.
+# For exact reproducibility, use environment.lock.yml instead.
+# For GPU with CUDA 11.8, use environment_gpu.yml.
+#
+# Usage:
+#   conda env create -f environment.yml
+#   conda activate bulkgpt
+#   pip install -e .
+
+name: bulkgpt
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Core runtime
+  - python>=3.10,<3.12
+  - pip
+  - numpy<2
+  - scipy
+  - pandas
+  - pyyaml
+  - scikit-learn
+  - anndata>=0.8.0
+  - h5py
+  - psutil
+  - tqdm
+
+  # PyTorch (CPU; for GPU add cudatoolkit manually, e.g. cudatoolkit=11.8)
+  - pytorch>=2.1.0
+  - torchvision
+  - torchaudio
+
+  # Single-cell bioinformatics
+  - scanpy>=1.9.1
+  - leidenalg
+  - python-igraph
+
+  # Development / testing
+  - pytest
+  - pytest-cov
+  - ruff
+
+  # Method-specific: installed via pip
+  - pip:
+    - scgpt==0.2.7

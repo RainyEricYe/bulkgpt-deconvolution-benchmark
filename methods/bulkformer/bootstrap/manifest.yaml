@@ -1,0 +1,8 @@
+name: bulkformer_bootstrap
+mode: conda
+conda_env: bulkformer
+entry:
+  run: run.py
+timeout: 7200
+requires_gpu: true
+description: "Pretrained BulkFormer + global_proj + 50× bootstrap RidgeCV ensemble"

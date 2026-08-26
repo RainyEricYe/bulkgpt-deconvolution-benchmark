@@ -1,0 +1,12 @@
+name: Deconf
+mode: container
+container_image: containers/sif/deconf.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deconf/run.py
+test_configs:
+  default: tests/configs/deconf/default.yaml
+description: >
+  Deconf — Deconfounded deconvolution.
+  Container-based method running inside deconf.sif Apptainer image.

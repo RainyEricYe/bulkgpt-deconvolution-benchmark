@@ -1,0 +1,12 @@
+name: Ridge
+mode: conda
+conda_env: bulkgpt
+timeout: 600
+entry:
+  run: methods/ridge/run.py
+test_configs:
+  default: tests/configs/ridge/default.yaml
+description: >
+  Ridge (regularised linear regression) deconvolution.
+  Builds a signature matrix from scRNA-seq reference and solves
+  for proportions using Ridge regression (L2 penalty).

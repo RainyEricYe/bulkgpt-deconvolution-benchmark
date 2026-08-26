@@ -1,0 +1,13 @@
+name: MuSic
+mode: container
+container_image: benchmark/pydeconv/sif/music.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/music/run.py
+test_configs:
+  default: tests/configs/music/default.yaml
+description: >
+  MuSic — MUlti-Subject single Cell deconvolution (R/Bioconductor).
+  Runs inside music.sif Apptainer container.
+  Uses multi-subject weighting from donor_id for improved accuracy.

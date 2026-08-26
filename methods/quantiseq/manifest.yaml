@@ -1,0 +1,12 @@
+name: Quantiseq
+mode: container
+container_image: containers/sif/quantiseq.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/quantiseq/run.py
+test_configs:
+  default: tests/configs/quantiseq/default.yaml
+description: >
+  Quantiseq — Quantification of immune cell subsets.
+  Container-based method running inside quantiseq.sif Apptainer image.

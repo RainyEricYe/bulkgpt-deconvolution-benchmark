@@ -1,0 +1,16 @@
+data:
+  celltype_col: cell_type
+model:
+  stack_checkpoint: weights/stack/bc_large_aligned.ckpt
+  genelist_path: weights/stack/basecount_1000per_15000max.pkl
+  embed_dim: 1600
+  hidden_dim: 128
+training:
+  n_pseudo_bulk: 5000
+  epochs: 30
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.00001
+  seed: 42
+paths:
+  output_dir: tests/output/stack/default

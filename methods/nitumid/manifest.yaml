@@ -1,0 +1,12 @@
+name: NITUMID
+mode: container
+container_image: containers/sif/nitumid.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/nitumid/run.py
+test_configs:
+  default: tests/configs/nitumid/default.yaml
+description: >
+  NITUMID — NITUMID deconvolution.
+  Container-based method running inside nitumid.sif Apptainer image.

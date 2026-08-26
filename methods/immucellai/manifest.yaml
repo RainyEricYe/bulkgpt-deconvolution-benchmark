@@ -1,0 +1,12 @@
+name: ImmuCellAI
+mode: container
+container_image: containers/sif/immucellai.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/immucellai/run.py
+test_configs:
+  default: tests/configs/immucellai/default.yaml
+description: >
+  ImmuCellAI — Immune cell abundance estimation.
+  Container-based method running inside immucellai.sif Apptainer image.

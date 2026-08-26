@@ -1,0 +1,13 @@
+# CIBERSORTx — test config (SDY67 validation)
+data:
+  celltype_col: "cell_type"
+  min_cells_per_type: 3
+  n_hvg: 500
+
+model:
+  nu_values: [0.25, 0.5, 0.75]
+
+paths:
+  ground_truth: null
+
+verbose: false

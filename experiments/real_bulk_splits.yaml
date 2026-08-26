@@ -1,0 +1,18 @@
+# Real-bulk data splits for architecture search
+# Locked: do not modify after Phase 0
+# Policy: validation sets used for architecture selection,
+#         test sets used only once at final evaluation.
+real_bulk:
+  validation:
+    - sdy67
+    - sweetwater
+  test:
+    - huuki_myers
+    - demixsc_retina
+  locked: true
+  test_policy: "final_only"
+  note: >
+    Validation real_bulk expression may be used for
+    unsupervised domain adaptation; validation labels
+    for hyperparameter selection only. Test data
+    must not influence any training or selection decision.

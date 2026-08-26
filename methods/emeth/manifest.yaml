@@ -1,0 +1,12 @@
+name: EMeth
+mode: container
+container_image: containers/sif/emeth.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/emeth/run.py
+test_configs:
+  default: tests/configs/emeth/default.yaml
+description: >
+  EMeth — DNA methylation-based deconvolution.
+  Container-based method running inside emeth.sif Apptainer image.

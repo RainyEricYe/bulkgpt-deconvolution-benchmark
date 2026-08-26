@@ -1,0 +1,6 @@
+params:
+  nu: 0.5
+  kernel: linear
+data:
+  n_pseudo_bulk: 500
+  proportion_alpha: 1.0

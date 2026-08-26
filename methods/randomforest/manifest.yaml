@@ -1,0 +1,10 @@
+name: RandomForest
+mode: conda
+conda_env: bulkgpt
+entry:
+  run: methods/randomforest/run.py
+timeout: 3600
+description: >
+  RandomForest deconvolution baseline (P2#13). Trains K separate
+  RandomForestRegressor models (one per cell type) on Dirichlet pseudo-bulk
+  mixtures, predicts real-bulk proportions (Mode A, SCADEN-style).

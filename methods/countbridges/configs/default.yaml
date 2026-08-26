@@ -1,0 +1,17 @@
+# Count Bridges — test config (SDY67 validation)
+container:
+  sif_path: containers/sif/countbridges.sif
+  timeout: 1800
+
+gpu: false
+
+params:
+  em_max_iter: 20
+  em_tol: 0.001
+  bridge_strength: 1.0
+  normalization: cpm
+
+data:
+  celltype_col: "cell_type"
+  n_pseudo_bulk: 200
+  proportion_alpha: 1.0

@@ -1,0 +1,16 @@
+name: scFoundation
+mode: conda
+conda_env: scfoundation
+timeout: 7200
+entry:
+  train: methods/scfoundation/train.py
+  predict: methods/scfoundation/predict.py
+test_configs:
+  default: methods/scfoundation/configs/default.yaml
+  longer: methods/scfoundation/configs/longer.yaml
+  mean_pool: methods/scfoundation/configs/mean_pool.yaml
+  full: methods/scfoundation/configs/full.yaml
+description: >
+  scFoundation embedding-based deconvolution.
+  Uses pretrained scFoundation model to extract cell embeddings,
+  then trains a lightweight MLP deconvolution head.

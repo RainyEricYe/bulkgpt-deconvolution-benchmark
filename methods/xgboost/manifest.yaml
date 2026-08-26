@@ -1,0 +1,10 @@
+name: XGBoost
+mode: conda
+conda_env: bulkgpt
+entry:
+  run: methods/xgboost/run.py
+timeout: 3600
+description: >
+  XGBoost deconvolution baseline (P2#13). Trains K separate XGBRegressor
+  models (one per cell type) on Dirichlet pseudo-bulk mixtures, predicts
+  real-bulk proportions (Mode A, SCADEN-style).

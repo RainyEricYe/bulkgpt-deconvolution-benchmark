@@ -1,0 +1,23 @@
+# Normalize line endings
+* text=auto
+
+# Shell scripts — keep LF
+*.sh text eol=lf
+
+# Data & binary markers
+*.h5 -text
+*.h5ad -text
+*.pkl -text
+*.sif -text
+*.png -text
+*.jpg -text
+*.gz -text
+*.ckpt -text
+*.pt -text
+*.json text
+
+# YAML/TOML/MD
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text
+*.py text eol=lf

@@ -1,0 +1,40 @@
+# GPU variant — adds CUDA 11.8 for NVIDIA GPU training/inference.
+# Base: environment.yml (CPU only). For exact reproducibility, see
+# environment.lock.yml (which uses CUDA 12.1 — adjust if needed).
+#
+# Usage:
+#   conda env create -f environment_gpu.yml
+#   conda activate bulkgpt-gpu
+#   pip install -e .
+
+name: bulkgpt-gpu
+channels:
+  - conda-forge
+  - bioconda
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python>=3.10,<3.12
+  - pip
+  - numpy<2
+  - scipy
+  - pandas
+  - pyyaml
+  - scikit-learn
+  - anndata>=0.8.0
+  - h5py
+  - psutil
+  - tqdm
+  - pytorch>=2.1.0
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - scanpy>=1.9.1
+  - leidenalg
+  - python-igraph
+  - pytest
+  - pytest-cov
+  - ruff
+  - pip:
+    - scgpt==0.2.7

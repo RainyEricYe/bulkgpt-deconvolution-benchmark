@@ -1,0 +1,12 @@
+name: OLS
+mode: conda
+conda_env: bulkgpt
+timeout: 600
+entry:
+  run: methods/ols/run.py
+test_configs:
+  default: tests/configs/ols/default.yaml
+description: >
+  Ordinary least squares deconvolution.
+  Builds a signature matrix from scRNA-seq reference and solves
+  for proportions using OLS.

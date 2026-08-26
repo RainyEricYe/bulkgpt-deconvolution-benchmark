@@ -1,0 +1,27 @@
+dataset:
+  batch_col: null
+  celltype_col: cell_type
+  data_path: tests/data/sdy67.h5
+  n_hvg: 200
+model:
+  cell_emb_style: cls
+  deconv_dropout: 0.1
+  deconv_hidden_dim: 128
+  deconv_n_layers: 2
+  max_seq_len: 2048
+paths:
+  checkpoint_dir: tests/output/geneformer/finetune
+  gene_cache: weights/transcriptformer/tf_sapiens/gene_cache/gene_mapping_cache.json
+  pretrained_model: weights/geneformer/default
+training:
+  backbone_lr: 7.0e-05
+  batch_size: 8
+  epochs: 30
+  loss_type: mse_kl
+  lr: 0.001
+  n_pseudo_bulk: 2000
+  num_workers: 1
+  seed: 42
+  train_ratio: 0.8
+  unfreeze_backbone: true
+  val_ratio: 0.2

@@ -1,0 +1,12 @@
+name: NNLS
+mode: conda
+conda_env: bulkgpt
+timeout: 600
+entry:
+  run: methods/nnls/run.py
+test_configs:
+  default: tests/configs/nnls/default.yaml
+description: >
+  Non-negative least squares deconvolution.
+  Builds a signature matrix from scRNA-seq reference and solves
+  for proportions using NNLS.

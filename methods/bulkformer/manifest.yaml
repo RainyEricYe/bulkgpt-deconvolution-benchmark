@@ -1,0 +1,14 @@
+name: BulkFormer
+mode: conda
+conda_env: bulkformer
+timeout: 7200
+entry:
+  train: methods/bulkformer/train.py
+  predict: methods/bulkformer/predict.py
+test_configs:
+  default: tests/configs/bulkformer/default.yaml
+description: >
+  BulkFormer embedding-based deconvolution.
+  Uses pretrained BulkFormer-147M (GCN+Performer, 20,010 genes,
+  pretrained on 500K+ bulk RNA-seq profiles) to extract sample
+  embeddings, then trains a DeconvHead MLP or uses RidgeCV.

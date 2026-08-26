@@ -1,0 +1,12 @@
+name: MethylResolver
+mode: container
+container_image: containers/sif/methylresolver.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/methylresolver/run.py
+test_configs:
+  default: tests/configs/methylresolver/default.yaml
+description: >
+  MethylResolver — Methylation-based cell-type deconvolution.
+  Container-based method running inside methylresolver.sif Apptainer image.

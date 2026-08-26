@@ -1,0 +1,14 @@
+name: scGPT-LoRA
+mode: conda
+conda_env: bulkgpt
+timeout: 7200
+entry:
+  train: methods/scgpt_lora/train.py
+  predict: methods/scgpt_lora/predict.py
+test_configs:
+  default: methods/scgpt_lora/configs/default.yaml
+description: >
+  scGPT with LoRA fine-tuning for bulk RNA-seq deconvolution.
+  Applies low-rank adapters (q/v projections) to scGPT transformer
+  layers and jointly trains with a LinearDeconvHead on bulk data.
+  Supports rank 4/8/16, q/v or q/k/v targets.

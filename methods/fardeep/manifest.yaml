@@ -1,0 +1,12 @@
+name: FARDEEP
+mode: container
+container_image: containers/sif/fardeep.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/fardeep/run.py
+test_configs:
+  default: tests/configs/fardeep/default.yaml
+description: >
+  FARDEEP — Fast and robust deconvolution.
+  Container-based method running inside fardeep.sif Apptainer image.

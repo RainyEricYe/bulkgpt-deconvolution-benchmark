@@ -1,0 +1,18 @@
+# TranscriptFormer — higher LR, wider head
+data:
+  celltype_col: cell_type
+model:
+  gene_cache: weights/transcriptformer/tf_sapiens/gene_cache/gene_mapping_cache.json
+  tf_checkpoint_dir: weights/transcriptformer/tf_sapiens
+  embed_dim: 2048
+  hidden_dim: 256
+training:
+  n_pseudo_bulk: 5000
+  train_ratio: 0.8
+  val_ratio: 0.2
+  epochs: 30
+  batch_size: 8
+  lr: 0.001
+  seed: 42
+paths:
+  tf_repo: weights/transcriptformer/repo  # clone from https://github.com/... to weights/transcriptformer/repo

@@ -1,0 +1,17 @@
+name: scGPT
+mode: conda
+conda_env: bulkgpt
+timeout: 7200
+entry:
+  train: methods/scgpt/train.py
+  predict: methods/scgpt/predict.py
+test_configs:
+  frozen: methods/scgpt/configs/frozen.yaml
+  finetune: methods/scgpt/configs/finetune.yaml
+  da: methods/scgpt/configs/da.yaml
+  mmd: methods/scgpt/configs/mmd.yaml
+  lr_7e5: methods/scgpt/configs/lr_7e5.yaml
+description: >
+  scGPT fine-tuned for bulk RNA-seq deconvolution.
+  Supports binned/continuous encoding, mean/cls/attn pooling,
+  frozen/unfrozen backbone, MSE+KL/MSE+COS loss.

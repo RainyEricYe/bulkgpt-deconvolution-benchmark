@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: python:3.9-slim
+
+# =============================================================================
+# Deconformer — Pathway-enhanced Transformer for cfRNA deconvolution
+#
+# NOTE: Source code is NOT publicly available (as of May 2026). This def
+# documents the build process but requires the deconformer_src submodule.
+# =============================================================================
+# If source is available, uncomment %files lines and build:
+#   apptainer build deconformer.sif deconformer.def
+
+%files
+    ../../fixed_scripts/deconformer/run.py /code/run.py
+    # deconformer_src /deconformer_src
+
+%post
+    pip3 install --no-cache-dir --upgrade pip
+    pip3 install --no-cache-dir numpy h5py anndata scanpy pandas
+
+%runscript
+    python3 /code/run.py
+
+%labels
+    Author BGI Research
+    Method Deconformer
+    SourceStatus NOT_PUBLIC

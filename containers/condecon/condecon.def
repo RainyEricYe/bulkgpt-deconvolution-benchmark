@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# ConDecon — R clustering-independent deconvolution
+# Source: https://github.com/CamaraLab/ConDecon
+# =============================================================================
+
+%files
+    run.R /code/run.R
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends \
+        libssl-dev libcurl4-openssl-dev libxml2-dev git \
+        && apt-get clean
+    R -e 'if (!require("devtools")) install.packages("devtools")'
+    R -e 'devtools::install_url("https://github.com/CamaraLab/ConDecon/archive/refs/heads/master.tar.gz", upgrade="never")'
+
+%runscript
+    R --no-restore --no-save --quiet --slave --file=/code/run.R
+
+%labels
+    Author DeconBenchmark
+    Method ConDecon
+    Version 1.0.0

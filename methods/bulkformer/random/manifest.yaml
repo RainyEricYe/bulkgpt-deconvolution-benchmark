@@ -1,0 +1,8 @@
+name: bulkformer_random
+mode: conda
+conda_env: bulkformer
+entry:
+  run: run.py
+timeout: 7200
+requires_gpu: true
+description: "Random init BulkFormer + global_expr_proj + RidgeCV (control experiment)"

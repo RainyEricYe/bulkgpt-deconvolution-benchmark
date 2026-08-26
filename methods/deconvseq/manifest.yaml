@@ -1,0 +1,12 @@
+name: DeconvSeq
+mode: container
+container_image: containers/sif/deconvseq.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deconvseq/run.py
+test_configs:
+  default: tests/configs/deconvseq/default.yaml
+description: >
+  DeconvSeq — Deconvolution of RNA-seq.
+  Container-based method running inside deconvseq.sif Apptainer image.

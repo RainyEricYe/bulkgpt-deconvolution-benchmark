@@ -1,0 +1,492 @@
+# Architecture search grid — Phase 1 + Phase 2
+# Each top-level key is a method; experiments define parameter sets.
+# All experiments use validation split only (sdy67, sweetwater).
+# Seeds: 42, 123, 456
+#
+# Phase 1: coarse screen — pool/hvg/loss/frozen variants
+# Phase 2: domain-shift refinement — training size, sampler, loss, domain adaptation
+
+methods:
+  scgpt:
+    description: "scGPT — gene-token fine-tuning"
+    default_config: tests/configs/scgpt/finetune.yaml
+    experiments:
+      mean_msekl_hvg581:
+        description: "Mean pooling, MSE+KL, 581 HVG (best known)"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+      cls_msekl_hvg581:
+        description: "CLS pooling, MSE+KL, 581 HVG"
+        overrides:
+          model.cell_emb_style: cls
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+      attn_msekl_hvg581:
+        description: "Attention pooling, MSE+KL, 581 HVG"
+        overrides:
+          model.cell_emb_style: attn
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+      mean_msecos_hvg581:
+        description: "Mean pooling, MSE+Cos, 581 HVG"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_cos
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+      mean_msekl_hvg1200:
+        description: "Mean pooling, MSE+KL, 1200 HVG"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 1200
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+      frozen_mean_msekl:
+        description: "Frozen backbone, mean, MSE+KL"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.001
+          training.backbone_lr: 0.0
+          training.unfreeze_backbone: false
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+
+      # ── Phase 2 experiments ──────────────────────────────────────────
+      mean_msekl_hvg581_npb5000:
+        description: "Mean, MSE+KL, 581 HVG, 5K pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 5000
+      mean_msekl_hvg581_npb20000:
+        description: "Mean, MSE+KL, 581 HVG, 20K pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 20000
+
+      # ── Phase 2 — Domain adaptation ────────────────────────────
+      mean_msekl_hvg581_da_grl0.05:
+        description: "Mean, MSE+KL, 581 HVG, GRL lambda=0.05"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.da_method: grl
+          training.da_lambda: 0.05
+          training.da_grl_lambda: 1.0
+      mean_msekl_hvg581_da_grl0.10:
+        description: "Mean, MSE+KL, 581 HVG, GRL lambda=0.10"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.da_method: grl
+          training.da_lambda: 0.10
+          training.da_grl_lambda: 1.0
+      mean_msekl_hvg581_da_mmd0.05:
+        description: "Mean, MSE+KL, 581 HVG, MMD lambda=0.05"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.da_method: mmd
+          training.da_lambda: 0.05
+      mean_msekl_hvg581_da_entropy0.01:
+        description: "Mean, MSE+KL, 581 HVG, entropy lambda=0.01"
+        overrides:
+          model.cell_emb_style: mean
+          dataset.n_hvg: 581
+          training.loss_type: mse_kl
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.da_method: entropy
+          training.da_lambda: 0.01
+
+  geneformer:
+    description: "Geneformer — rank-value gene-token fine-tuning"
+    default_config: tests/configs/geneformer/default.yaml
+    experiments:
+      cls_hid256:
+        description: "CLS pooling, hidden 256"
+        overrides:
+          model.cell_emb_style: cls
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+      mean_hid256:
+        description: "Mean pooling, hidden 256"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+      cls_hid512:
+        description: "CLS pooling, hidden 512"
+        overrides:
+          model.cell_emb_style: cls
+          model.deconv_hidden_dim: 512
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+      frozen_cls_hid256:
+        description: "Frozen, CLS, hidden 256"
+        overrides:
+          model.cell_emb_style: cls
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.001
+          training.backbone_lr: 0.0
+          training.unfreeze_backbone: false
+          training.loss_type: mse_kl
+
+      # ── Phase 2 experiments ──────────────────────────────────────────
+      mean_hid256_npb5000:
+        description: "Mean pool, hid 256, 5K pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 5000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+      mean_hid256_npb20000:
+        description: "Mean pool, hid 256, 20K pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 20000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+
+      # ── Phase 2 — Domain adaptation ────────────────────────────
+      mean_hid256_da_grl0.05:
+        description: "Mean pool, hid 256, GRL lambda=0.05"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+          training.da_method: grl
+          training.da_lambda: 0.05
+          training.da_grl_lambda: 1.0
+      mean_hid256_da_grl0.10:
+        description: "Mean pool, hid 256, GRL lambda=0.10"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+          training.da_method: grl
+          training.da_lambda: 0.10
+          training.da_grl_lambda: 1.0
+      mean_hid256_da_mmd0.05:
+        description: "Mean pool, hid 256, MMD lambda=0.05"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+          training.da_method: mmd
+          training.da_lambda: 0.05
+      mean_hid256_da_mmd0.01:
+        description: "Mean pool, hid 256, MMD lambda=0.01 (investigate NaN fix)"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+          training.da_method: mmd
+          training.da_lambda: 0.01
+      mean_hid256_da_entropy0.01:
+        description: "Mean pool, hid 256, entropy lambda=0.01"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          training.epochs: 30
+          training.n_pseudo_bulk: 10000
+          training.lr: 0.00007
+          training.backbone_lr: 0.00007
+          training.unfreeze_backbone: true
+          training.loss_type: mse_kl
+          training.da_method: entropy
+          training.da_lambda: 0.01
+
+  scfoundation:
+    description: "scFoundation — frozen, fixed 19264 genes"
+    default_config: tests/configs/scfoundation/default.yaml
+    experiments:
+      mean_hid128_npb2000:
+        description: "Mean pool, hid 128, 2000 pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 128
+          model.deconv_n_layers: 2
+          training.n_pseudo_bulk: 2000
+          training.epochs: 20
+          training.lr: 0.001
+          training.loss_type: mse_kl
+      cls_hid128_npb2000:
+        description: "CLS pool, hid 128, 2000 pseudo-bulk"
+        overrides:
+          model.cell_emb_style: cls
+          model.deconv_hidden_dim: 128
+          model.deconv_n_layers: 2
+          training.n_pseudo_bulk: 2000
+          training.epochs: 20
+          training.lr: 0.001
+          training.loss_type: mse_kl
+      mean_hid256_npb5000:
+        description: "Mean pool, hid 256, 5000 pseudo-bulk"
+        overrides:
+          model.cell_emb_style: mean
+          model.deconv_hidden_dim: 256
+          model.deconv_n_layers: 3
+          training.n_pseudo_bulk: 5000
+          training.epochs: 20
+          training.lr: 0.001
+          training.loss_type: mse_kl
+      cls_hid256_npb5000:
+        description: "CLS pool, hid 256, 5000 pseudo-bulk"
+        overrides:
+          model.cell_emb_style: cls
+          model.deconv_hidden_dim: 256
+          model.deconv_n_layers: 3
+          training.n_pseudo_bulk: 5000
+          training.epochs: 20
+          training.lr: 0.001
+          training.loss_type: mse_kl
+
+  stack:
+    description: "STACK — cell-embedding mixture"
+    default_config: tests/configs/stack/progressive3.yaml
+    experiments:
+      prog3_hid512_expr:
+        description: "Progressive3, hidden 512, embedding-space"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog4_hid512_expr:
+        description: "Progressive4, hidden 512, embedding-space"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog3_hid768_expr:
+        description: "Progressive3, hidden 768, embedding-space"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 768
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+
+      # ── Phase 2 experiments ──────────────────────────────────────────
+      prog4_hid512_expr_pb20000:
+        description: "Prog4, hid 512, expression-space, 20K pseudo-bulk"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 20000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog4_hid512_expr_pb10000:
+        description: "Prog4, hid 512, expression-space, 10K pseudo-bulk"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+
+      # ── Phase 2 — Domain adaptation (STACK) ──────────────────────────
+      prog4_hid512_da_mmd01:
+        description: "Prog4, hid 512, expr-space, MMD lambda=0.1"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+          training.da_method: mmd
+          training.da_lambda: 0.1
+      prog4_hid512_da_entropy001:
+        description: "Prog4, hid 512, expr-space, entropy lambda=0.01"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+          training.da_method: entropy
+          training.da_lambda: 0.01
+
+  transcriptformer:
+    description: "TranscriptFormer — cell-embedding mixture"
+    default_config: tests/configs/transcriptformer/progressive3.yaml
+    experiments:
+      prog3_hid512_expr:
+        description: "Progressive3, hidden 512, embedding-space"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog4_hid512_expr:
+        description: "Progressive4, hidden 512, embedding-space"
+        overrides:
+          model.n_progressive_layers: 4
+          model.hidden_dim: 512
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog3_hid768_expr:
+        description: "Progressive3, hidden 768, embedding-space"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 768
+          training.n_pseudo_bulk: 5000
+          training.epochs: 30
+          training.lr: 0.00007
+
+      # ── Phase 2 experiments ──────────────────────────────────────────
+      prog3_hid512_expr_pb20000:
+        description: "Prog3, hid 512, expression-space, 20K pseudo-bulk"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 20000
+          training.epochs: 30
+          training.lr: 0.00007
+      prog3_hid512_expr_pb10000:
+        description: "Prog3, hid 512, expression-space, 10K pseudo-bulk"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+
+      # ── Phase 2 — Domain adaptation (TF) ────────────────────────────
+      prog3_hid512_da_mmd01:
+        description: "Prog3, hid 512, expr-space, MMD lambda=0.1"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+          training.da_method: mmd
+          training.da_lambda: 0.1
+      prog3_hid512_da_entropy001:
+        description: "Prog3, hid 512, expr-space, entropy lambda=0.01"
+        overrides:
+          model.n_progressive_layers: 3
+          model.hidden_dim: 512
+          model.pseudo_bulk_space: expression
+          training.n_pseudo_bulk: 10000
+          training.epochs: 30
+          training.lr: 0.00007
+          training.da_method: entropy
+          training.da_lambda: 0.01

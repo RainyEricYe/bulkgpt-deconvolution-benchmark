@@ -1,0 +1,12 @@
+name: DiffFormer
+mode: container
+container_image: containers/sif/diffformer.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/diffformer/run.py
+test_configs:
+  default: tests/configs/diffformer/default.yaml
+description: >
+  DiffFormer — Conditional diffusion Transformer deconvolution.
+  Container-based method running inside diffformer.sif Apptainer image.

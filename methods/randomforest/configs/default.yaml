@@ -1,0 +1,10 @@
+params:
+  n_pseudo_bulk: 500
+  n_cells_per_sample: 80
+  max_cells: 15000
+  n_hvg: 2000
+  mixture_alpha: 0.1
+  seed: 42
+  n_estimators: 150
+  n_jobs: 4
+  max_depth: null

@@ -1,0 +1,10 @@
+# DemixT — test config (SDY67 validation)
+container:
+  sif_path: containers/sif/demixt.sif
+  timeout: 7200
+
+gpu: false
+
+data:
+  celltype_col: "cell_type"
+  n_pseudo_bulk: 200

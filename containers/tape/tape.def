@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# TAPE (scTAPE) — Python autoencoder deconvolution
+# Source: https://github.com/zhanglab/TAPE
+# =============================================================================
+
+%files
+    ../../fixed_scripts/tape/run.py /code/run.py
+
+%post
+    # Install sctape package and its dependencies
+    pip3 install --no-cache-dir sctape
+
+%runscript
+    python3 /code/run.py
+
+%labels
+    Author DeconBenchmark
+    Method TAPE
+    Version 1.0.0

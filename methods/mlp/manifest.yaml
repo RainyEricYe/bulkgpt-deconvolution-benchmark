@@ -1,0 +1,10 @@
+name: MLP
+mode: conda
+conda_env: bulkgpt
+entry:
+  run: methods/mlp/run.py
+timeout: 3600
+description: >
+  MLP deconvolution baseline (P2#13). Trains an sklearn MLPRegressor on
+  Dirichlet pseudo-bulk mixtures from the dataset's scRNA reference, predicts
+  real-bulk proportions (Mode A, SCADEN-style).

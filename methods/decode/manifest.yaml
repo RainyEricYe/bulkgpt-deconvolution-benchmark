@@ -1,0 +1,12 @@
+name: DECODE
+mode: conda
+conda_env: bulkgpt
+timeout: 3600
+entry:
+  run: methods/decode/run.py
+test_configs:
+  default: tests/configs/decode/default.yaml
+description: >
+  DECODE (DEep COnvolutional DEconvolution) via MBdeconv.
+  Single-script method that trains on pseudo-bulk from scRNA-seq reference
+  and predicts cell-type proportions on bulk mixtures.

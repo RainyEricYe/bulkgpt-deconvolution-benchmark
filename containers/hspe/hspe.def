@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# hspe (dtangle2) — R deconvolution with high-collinearity adjustment
+# =============================================================================
+
+%post
+    R -e 'install.packages(c("dtangle", "DEoptimR"), repos="https://cloud.r-project.org/")'
+    mkdir -p /code
+
+%files
+    ../../fixed_scripts/hspe/run.R /code/run.R
+
+%runscript
+    R --no-restore --no-save --quiet --slave --file=/code/run.R
+
+%labels
+    Author DeconBenchmark
+    Method hspe
+    Version 1.0.0

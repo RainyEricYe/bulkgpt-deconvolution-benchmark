@@ -1,0 +1,12 @@
+name: CPM
+mode: container
+container_image: containers/sif/cpm.sif
+host_env: bulkgpt
+timeout: 14400
+entry:
+  run: methods/cpm/run.py
+test_configs:
+  default: tests/configs/cpm/default.yaml
+description: >
+  CPM — Counts per million normalization baseline.
+  Container-based method running inside cpm.sif Apptainer image.

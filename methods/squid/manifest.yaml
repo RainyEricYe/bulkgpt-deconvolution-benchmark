@@ -1,0 +1,12 @@
+name: SQUID
+mode: container
+container_image: benchmark/pydeconv/sif/squid.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/squid/run.py
+test_configs:
+  default: tests/configs/squid/default.yaml
+description: >
+  SQUID — Dampened weighted least-squares deconvolution (R).
+  Uses signature matrix derived from scRNA-seq reference.

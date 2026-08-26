@@ -1,0 +1,16 @@
+name: Deconformer
+mode: container
+container_image: containers/sif/deconformer.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deconformer/run.py
+test_configs:
+  default: tests/configs/deconformer/default.yaml
+description: >
+  Deconformer — Pathway-enhanced Transformer deconvolution.
+  Container-based method running inside deconformer.sif Apptainer image.
+
+# ── Deprecated ──
+status: deprecated
+deprecation_reason: "模型限制：cfRNA 专用 Transformer 模型，预训练 checkpoint 与 1_pseudo_bulk 数据不匹配"

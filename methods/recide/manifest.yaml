@@ -1,0 +1,8 @@
+name: recide
+description: "ReCIDE — DWLS-based deconvolution with Seurat marker selection, containerized"
+type: container
+sif: ../../containers/recide/sif/recide.sif
+entrypoint: apptainer run --bind {h5}:/input.h5 {sif} --h5 /input.h5 --output /tmp/props.csv
+conda_env: null
+timeout: 3600
+supported_data: [real_bulk, pseudo_bulk]

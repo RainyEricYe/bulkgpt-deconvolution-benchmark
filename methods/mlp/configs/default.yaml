@@ -1,0 +1,10 @@
+params:
+  n_pseudo_bulk: 1000
+  n_cells_per_sample: 80
+  max_cells: 15000
+  n_hvg: 2000
+  mixture_alpha: 0.1
+  seed: 42
+  hidden_layer_sizes: [512, 256]
+  alpha: 0.0001
+  max_iter: 500

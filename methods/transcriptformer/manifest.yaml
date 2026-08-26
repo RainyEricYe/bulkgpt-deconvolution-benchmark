@@ -1,0 +1,15 @@
+name: TranscriptFormer
+mode: conda
+conda_env: TranscriptFormer
+timeout: 7200
+entry:
+  train: methods/transcriptformer/train.py
+  predict: methods/transcriptformer/predict.py
+test_configs:
+  default: methods/transcriptformer/configs/default.yaml
+  longer: methods/transcriptformer/configs/longer.yaml
+  finetune: methods/transcriptformer/configs/finetune.yaml
+description: >
+  TranscriptFormer embedding-based deconvolution.
+  Uses pretrained TranscriptFormer to extract cell embeddings,
+  then trains a DeconvHead with KL-divergence loss.

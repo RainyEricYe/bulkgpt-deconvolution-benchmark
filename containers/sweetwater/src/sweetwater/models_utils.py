@@ -1,0 +1,100 @@
+"""
+Sweetwater model utilities: autoencoder architecture, data loaders, early stopping.
+Adapted from https://github.com/ML4BM-Lab/Sweetwater
+"""
+import numpy as np
+import torch
+from torch.nn import Linear, ReLU, Sigmoid, Dropout, Softmax
+from torch.utils.data import Dataset, DataLoader
+
+
+class EarlyStopper:
+    def __init__(self, patience=1, min_delta=0):
+        self.patience = patience
+        self.min_delta = min_delta
+        self.counter = 0
+        self.min_validation_loss = np.inf
+
+    def early_stop(self, validation_loss):
+        if validation_loss < self.min_validation_loss:
+            self.min_validation_loss = validation_loss
+            self.counter = 0
+        elif validation_loss > (self.min_validation_loss + self.min_delta):
+            self.counter += 1
+            if self.counter >= self.patience:
+                return True
+        return False
+
+
+class SweetWaterAutoEncoder(torch.nn.Module):
+    def __init__(self, num_features, num_classes):
+        super().__init__()
+        self.num_features = num_features
+        self.num_classes = num_classes
+        self.l1size = int(self.num_features // 2)
+        self.l2size = int(self.num_features // 4)
+        torch.manual_seed(418)
+
+        # Encoder layers
+        self.encl1 = Linear(self.num_features, self.l1size)
+        self.encl2 = Linear(self.l1size, self.l2size)
+
+        # Decoder layers
+        self.decl1 = Linear(self.l2size, self.l1size)
+        self.decl2 = Linear(self.l1size, self.num_features)
+
+        # Proportion prediction layers
+        self.propl1 = Linear(self.l2size, self.l2size)
+        self.propl2 = Linear(self.l2size, self.num_classes)
+
+        # Activation functions
+        self.relu1 = ReLU()
+        self.relu2 = ReLU()
+        self.relu3 = ReLU()
+        self.smm = Softmax(dim=1)
+        self.sm = Sigmoid()
+
+    def forward(self, x, mode='phase3'):
+        # Encoder
+        ench1 = self.encl1(x)
+        ench1 = self.relu1(ench1)
+        ench2 = self.encl2(ench1)
+
+        if mode == 'phase3':
+            # Proportion inference
+            propl1 = self.propl1(ench2)
+            propl1 = self.relu2(propl1)
+            propl2 = self.propl2(propl1)
+            propl2 = self.smm(propl2)
+            return propl2
+        else:
+            # Decoder (autoencoder)
+            dech1 = self.decl1(ench2)
+            dech1 = self.relu3(dech1)
+            dech2 = self.decl2(dech1)
+            return dech2
+
+
+class SingleDataset(Dataset):
+    def __init__(self, x):
+        self.x = x
+        self.length = self.x.shape[0]
+
+    def __getitem__(self, idx):
+        return self.x[idx]
+
+    def __len__(self):
+        return self.length
+
+
+class PairedDataset(Dataset):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.length = self.x.shape[0]
+
+    def __getitem__(self, idx):
+        return self.x[idx], self.y[idx]
+
+    def __len__(self):
+        return self.length

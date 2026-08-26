@@ -1,0 +1,8 @@
+name: bulkformer_mean_pool
+mode: conda
+conda_env: bulkformer
+entry:
+  run: run.py
+timeout: 7200
+requires_gpu: true
+description: "Pretrained BulkFormer + full encoder + mean pooling + RidgeCV"

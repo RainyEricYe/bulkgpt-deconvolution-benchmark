@@ -1,0 +1,12 @@
+name: RefACTor
+mode: container
+container_image: containers/sif/refactor.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/refactor/run.py
+test_configs:
+  default: tests/configs/refactor/default.yaml
+description: >
+  RefACTor — Reference-based factorizer deconvolution.
+  Container-based method running inside refactor.sif Apptainer image.

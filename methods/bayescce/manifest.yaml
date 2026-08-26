@@ -1,0 +1,16 @@
+name: BayesCCE
+mode: container
+container_image: containers/sif/bayescce.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/bayescce/run.py
+test_configs:
+  default: tests/configs/bayescce/default.yaml
+description: >
+  BayesCCE — Bayesian cell count estimation.
+  Container-based method running inside bayescce.sif Apptainer image.
+
+# ── Deprecated ──
+status: deprecated
+deprecation_reason: "squashfuse 超时：1.6GB MATLAB SIF 在并发时挂载失败，基础设施限制"

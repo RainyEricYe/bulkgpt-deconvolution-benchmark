@@ -1,0 +1,16 @@
+name: ConDecon
+mode: container
+container_image: benchmark/pydeconv/sif/condecon.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/condecon/run.py
+test_configs:
+  default: tests/configs/condecon/default.yaml
+description: >
+  ConDecon — Clustering-independent deconvolution (R).
+  Uses rank correlations between single-cell and bulk expression.
+
+# ── Deprecated ──
+status: deprecated
+deprecation_reason: "Container fundamentally broken: calls non-existent ConDecon() function, fallback produces gene-level (n_genes x n_types) matrix instead of sample-level proportions"

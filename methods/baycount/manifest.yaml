@@ -1,0 +1,12 @@
+name: BayCount
+mode: container
+container_image: containers/sif/baycount.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/baycount/run.py
+test_configs:
+  default: tests/configs/baycount/default.yaml
+description: >
+  BayCount — Bayesian counting deconvolution.
+  Container-based method running inside baycount.sif Apptainer image.

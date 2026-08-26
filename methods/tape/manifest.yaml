@@ -1,0 +1,12 @@
+name: TAPE
+mode: container
+container_image: benchmark/pydeconv/sif/tape.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/tape/run.py
+test_configs:
+  default: tests/configs/tape/default.yaml
+description: >
+  TAPE (scTAPE) — Autoencoder + GAN deconvolution.
+  Trains autoencoder on scRNA-seq reference, predicts proportions on bulk.

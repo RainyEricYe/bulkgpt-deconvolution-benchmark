@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# Sweetwater — Python interpretable autoencoder for deconvolution
+# Source: https://github.com/ML4BM-Lab/Sweetwater
+# =============================================================================
+
+%post
+    pip3 install --no-cache-dir --default-timeout=300 \
+        "numpy<2,>=1.23.5" "pandas>=2.0" scikit-learn tqdm scipy matplotlib==3.8.0
+    pip3 install --no-cache-dir --default-timeout=600 torch --index-url https://download.pytorch.org/whl/cpu
+    mkdir -p /code/sweetwater
+
+%files
+    ../../fixed_scripts/sweetwater/run.py /code/run.py
+    src/sweetwater/__init__.py /code/sweetwater/__init__.py
+    src/sweetwater/data_utils.py /code/sweetwater/data_utils.py
+    src/sweetwater/model.py /code/sweetwater/model.py
+    src/sweetwater/models_utils.py /code/sweetwater/models_utils.py
+
+%runscript
+    python3 /code/run.py
+
+%labels
+    Author DeconBenchmark
+    Method Sweetwater
+    Version 1.0.0

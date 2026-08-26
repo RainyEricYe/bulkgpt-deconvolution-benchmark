@@ -1,0 +1,12 @@
+name: Sweetwater
+mode: container
+container_image: benchmark/pydeconv/sif/sweetwater.sif
+host_env: bulkgpt
+timeout: 3600
+entry:
+  run: methods/sweetwater/run.py
+test_configs:
+  default: tests/configs/sweetwater/default.yaml
+description: >
+  Sweetwater — Interpretable scArches VAE deconvolution.
+  Trains VAE on scRNA-seq reference to predict cell-type proportions.

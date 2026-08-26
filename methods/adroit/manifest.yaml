@@ -1,0 +1,12 @@
+name: AdRoit
+mode: container
+container_image: containers/sif/adroit.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/adroit/run.py
+test_configs:
+  default: tests/configs/adroit/default.yaml
+description: >
+  AdRoit — Adaptive reference-based deconvolution.
+  Container-based method running inside adroit.sif Apptainer image.

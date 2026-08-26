@@ -1,0 +1,22 @@
+data:
+  sc_ref: tests/data/sdy67.h5
+  bulk: tests/data/sdy67.h5
+  celltype_col: cell_type
+  batch_col: donor
+training:
+  seed: 42
+  lr: 0.001
+  epochs: 10
+  batch_size: 16
+  hidden_dim: 64
+  latent_dim: 16
+  n_pseudo_bulk: 500
+  alpha: 1.0
+  train_samples: 400
+  test_samples: 100
+  min_cells_per_type: 1
+  gpu: true
+model:
+  input_dim: 1344
+paths:
+  output_dir: tests/output/decode/default

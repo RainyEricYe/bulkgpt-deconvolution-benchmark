@@ -1,0 +1,12 @@
+name: Dtangle
+mode: container
+container_image: containers/sif/dtangle.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/dtangle/run.py
+test_configs:
+  default: tests/configs/dtangle/default.yaml
+description: >
+  Dtangle — Dtangle deconvolution (linear mixing).
+  Container-based method running inside dtangle.sif Apptainer image.

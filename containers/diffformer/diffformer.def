@@ -1,0 +1,30 @@
+Bootstrap: docker
+From: python:3.9-slim
+
+# =============================================================================
+# DiffFormer — Conditional DDPM + Transformer deconvolution
+#
+# NOTE: Source code is NOT publicly available (as of May 2026). This def
+# documents the build process but requires the diffformer_src submodule.
+# =============================================================================
+# If source is available, uncomment %files lines and build:
+#   apptainer build diffformer.sif diffformer.def
+
+%files
+    ../../fixed_scripts/diffformer/run.py /code/run.py
+    # diffformer_src/src /diffformer/src
+    # diffformer_src/results /diffformer/results
+
+%post
+    pip3 install --no-cache-dir --upgrade pip
+    pip3 install --no-cache-dir numpy h5py anndata scikit-learn pandas
+    pip3 install --no-cache-dir --default-timeout=600 torch --index-url https://download.pytorch.org/whl/cpu
+    pip3 install --no-cache-dir 'diffusers>=0.30' accelerate
+
+%runscript
+    python3 /code/run.py
+
+%labels
+    Author Luoyang Institute of Science and Technology
+    Method DiffFormer
+    SourceStatus NOT_PUBLIC

@@ -1,0 +1,12 @@
+name: AutoGenes
+mode: container
+container_image: containers/sif/autogenes.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/autogenes/run.py
+test_configs:
+  default: tests/configs/autogenes/default.yaml
+description: >
+  AutoGenes — Autoencoder-based gene expression deconvolution.
+  Container-based method running inside autogenes.sif Apptainer image.

@@ -1,0 +1,66 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy pandas anndata h5py pytest huggingface_hub
+
+      - name: Download test data (SDY67 H5 from HuggingFace)
+        run: |
+          mkdir -p tests/data
+          python - <<'EOF'
+          from huggingface_hub import hf_hub_download
+          p = hf_hub_download(
+              repo_id="yeruihku/bulkgpt-data",
+              filename="2_real_bulk/sdy67.h5",
+              repo_type="dataset",
+          )
+          import shutil
+          shutil.copy(p, "tests/data/sdy67.h5")
+          EOF
+
+      - name: Run tests
+        run: python -m pytest tests/ -v
+
+  # ── Nightly GPU test ─────────────────────────────────────────────────
+  nightly-gpu:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies (GPU)
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy pandas anndata h5py pytest torch
+
+      - name: Run GPU tests
+        run: python -m pytest tests/ -v -k "gpu"

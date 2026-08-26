@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: deconvolution/base:latest
+
+# =============================================================================
+# DeMixSC — R weighted NNLS with benchmark alignment
+# Source: https://github.com/wwylab/DeMixSC
+# =============================================================================
+
+%files
+    run.R /code/run.R
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends \
+        libssl-dev libcurl4-openssl-dev libxml2-dev git \
+        liblapack-dev libblas-dev gfortran \
+        && apt-get clean
+    R -e 'options(repos = c(CRAN = "https://cloud.r-project.org")); if (!require("BiocManager")) install.packages("BiocManager")'
+    R -e 'BiocManager::install("preprocessCore", version = "3.16", ask = FALSE, update = FALSE)'
+    R -e 'BiocManager::install("sva", version = "3.16", ask = FALSE, update = FALSE)'
+    R -e 'if (!require("devtools")) install.packages("devtools")'
+    R -e 'devtools::install_url("https://github.com/wwylab/DeMixSC/archive/refs/heads/main.tar.gz", upgrade="never")'
+
+%runscript
+    R --no-restore --no-save --quiet --slave --file=/code/run.R
+
+%labels
+    Author DeconBenchmark
+    Method DeMixSC
+    Version 1.0.0

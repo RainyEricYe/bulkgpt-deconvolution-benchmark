@@ -1,0 +1,16 @@
+name: Deblender
+mode: container
+container_image: containers/sif/deblender.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deblender/run.py
+test_configs:
+  default: tests/configs/deblender/default.yaml
+description: >
+  Deblender — Expression deblending deconvolution.
+  Container-based method running inside deblender.sif Apptainer image.
+
+# ── Deprecated ──
+status: deprecated
+deprecation_reason: "squashfuse 超时：大 SIF 并发加载时挂载失败，基础设施限制"

@@ -1,0 +1,12 @@
+name: DeconPeaker
+mode: container
+container_image: containers/sif/deconpeaker.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/deconpeaker/run.py
+test_configs:
+  default: tests/configs/deconpeaker/default.yaml
+description: >
+  DeconPeaker — Peak-based deconvolution.
+  Container-based method running inside deconpeaker.sif Apptainer image.

@@ -1,0 +1,7 @@
+name: pca_ridge
+mode: conda
+conda_env: bulkgpt
+entry:
+  run: run.py
+timeout: 300
+description: "PCA dimensionality reduction + RidgeCV split evaluation (simple baseline)"

@@ -1,0 +1,12 @@
+name: DWLS
+mode: container
+container_image: containers/sif/dwls.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/dwls/run.py
+test_configs:
+  default: tests/configs/dwls/default.yaml
+description: >
+  DWLS — Dampened weighted least-squares deconvolution.
+  Container-based method running inside dwls.sif Apptainer image.

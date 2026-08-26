@@ -1,0 +1,20 @@
+data:
+  celltype_col: cell_type
+  # Data is downloaded via data/prepare/download_all.sh (HuggingFace repo);
+  # paths are relative to the repository root.
+  data_path: data/1_pseudo_bulk/cellxgene/Liver.h5
+model:
+  deconv_hidden_dim: 128
+  embed_dim: 768
+paths:
+  checkpoint_dir: checkpoints/scfoundation
+  output_dir: checkpoints/scfoundation
+  pretrained_model: weights/scfoundation/default/models/models.ckpt
+training:
+  batch_size: 1
+  epochs: 30
+  lr: 0.001
+  n_pseudo_bulk: 2000
+  seed: 42
+  train_ratio: 0.8
+  val_ratio: 0.2

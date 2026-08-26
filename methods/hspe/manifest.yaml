@@ -1,0 +1,12 @@
+name: HSPE
+mode: container
+container_image: containers/sif/hspe.sif
+host_env: bulkgpt
+timeout: 7200
+entry:
+  run: methods/hspe/run.py
+test_configs:
+  default: tests/configs/hspe/default.yaml
+description: >
+  HSPE — High-sensitivity proportion estimation.
+  Container-based method running inside hspe.sif Apptainer image.

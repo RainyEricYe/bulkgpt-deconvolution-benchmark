@@ -1,0 +1,10 @@
+# Sweetwater — test config (SDY67 validation)
+container:
+  sif_path: containers/sif/sweetwater.sif
+  timeout: 3600
+
+gpu: true
+
+data:
+  celltype_col: "cell_type"
+  n_pseudo_bulk: 200

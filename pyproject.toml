@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bulkgpt-deconv-benchmark"
+version = "1.0.0"
+description = "Multi-Foundation Model Benchmark for Bulk RNA-seq Deconvolution"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy<2",
+    "scipy",
+    "pandas",
+    "pyyaml",
+    "scikit-learn",
+    "anndata",
+    "h5py",
+    "psutil",
+]
+
+[tool.setuptools.packages.find]
+include = ["core*"]

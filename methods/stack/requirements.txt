@@ -1,0 +1,9 @@
+torch>=1.13.0
+numpy
+pandas
+anndata
+scanpy
+scipy
+pyyaml
+# STACK (install from https://github.com/arcinstitute/stack)
+# git+https://github.com/arcinstitute/stack.git

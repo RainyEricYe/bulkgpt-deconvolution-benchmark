@@ -1,0 +1,43 @@
+# Cell type hierarchy merges
+# ==========================
+# Maps broad GT cell type names → fine-grained scRNA subtypes to merge.
+# When evaluating, if a GT type has no direct match in pred columns,
+# evaluate.py sums the matching subtypes into the GT type.
+#
+# Matching is case-insensitive.  Add entries for any dataset where
+# scRNA annotation granularity differs from GT.
+#
+# Format:
+#   <GT_type_name>:
+#     - <subtype_name>
+#     - <subtype_name>
+#     ...
+
+# altman_TabulaSapiens: scRNA has fine immune subtypes → GT has 3 broad categories
+Lymphocytes:
+  - B cells
+  - T cells
+  - NK cells
+  - T cells CD4 conv
+  - T cells CD8
+  - Plasma cells
+  - Tregs
+  - ILC
+  - mDC
+  - pDC
+  - Plasmablasts
+  - B_cells
+  - T_cells
+  - NK_cells
+  - Plasma_cells
+  - Mast cells
+  - NKT
+  - CD8+ T cells
+  - CD4+ T cells
+
+# altman datasets: myeloid subtypes (Monocytes in GT may include macrophages, mDC)
+Monocytes:
+  - CD14+ Monocytes
+  - CD16+ Monocytes
+  - Macrophages
+  - mDC

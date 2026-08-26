@@ -1,0 +1,23 @@
+dataset:
+  batch_col: null
+  celltype_col: cell_type
+  data_path: tests/data/sdy67.h5
+  n_hvg: 200
+model:
+  backbone_type: scfoundation
+  cell_emb_style: mean
+  deconv_hidden_dim: 256
+  deconv_n_layers: 3
+paths:
+  checkpoint_dir: tests/output/scfoundation/full
+  pretrained_model: weights/scfoundation/default/models/models.ckpt
+training:
+  batch_size: 1
+  epochs: 30
+  loss_type: mse_kl
+  lr: 0.0005
+  n_pseudo_bulk: 2000
+  num_workers: 1
+  seed: 42
+  train_ratio: 0.8
+  val_ratio: 0.2

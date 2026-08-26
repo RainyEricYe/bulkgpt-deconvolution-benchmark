@@ -1,0 +1,7 @@
+numpy
+pandas
+anndata
+scipy
+h5py
+pyyaml
+# Apptainer/Singularity (system-level, for container execution)

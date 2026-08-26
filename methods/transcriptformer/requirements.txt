@@ -1,0 +1,10 @@
+torch>=1.13.0
+numpy
+pandas
+anndata
+scanpy
+scipy
+pyyaml
+omegaconf
+# TranscriptFormer (install from https://github.com/suinleelab/TranscriptFormer)
+# pip install -e /path/to/TranscriptFormer/repo

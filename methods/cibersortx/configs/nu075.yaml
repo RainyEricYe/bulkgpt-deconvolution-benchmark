@@ -1,0 +1,32 @@
+# ===========================================================================
+# CIBERSORTx Python mode -- NuSVR with nu=0.75
+#
+# Ablation variant: single nu value (0.75) instead of the default sweep
+# [0.25, 0.5, 0.75].  Tests sensitivity to the NuSVR nu parameter.
+#
+# Uses scikit-learn NuSVR (nu in {0.25, 0.5, 0.75}) as a lightweight
+# Python baseline, no Docker / Stanford token required.
+#
+# Reference:
+#   Newman et al. (2019) Nature Biotechnology. Determining cell type
+#   abundance and expression from bulk tissues with digital cytometry.
+# ===========================================================================
+
+data:
+  sc_ref: "data/sc_ref.h5ad"
+  bulk: "data/bulk.csv"
+  celltype_col: null
+  min_cells_per_type: 10
+  n_hvg: 2000
+  bulk_sep: null
+
+model:
+  # Single nu value (ablation variant: only 0.75).
+  nu_values: [0.75]
+
+paths:
+  output: "results/cibersortx/proportions.csv"
+  signature_matrix: "results/cibersortx/signature_matrix.csv"
+  ground_truth: null
+
+verbose: true
